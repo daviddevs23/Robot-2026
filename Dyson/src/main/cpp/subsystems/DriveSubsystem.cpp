@@ -35,5 +35,5 @@ DriveSubsystem::DriveSubsystem()
 }
 
 void DriveSubsystem::TankDrive(double leftSpeed, double rightSpeed) {
-  m_drive.TankDrive(leftSpeed, rightSpeed);
+  m_drive.ArcadeDrive(leftSpeed, rightSpeed);
 }

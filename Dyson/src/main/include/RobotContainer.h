@@ -4,11 +4,12 @@
 
 #pragma once
 
-#include <frc/XboxController.h>
+#include <frc2/command/button/CommandXboxController.h>
 #include <frc2/command/CommandPtr.h>
 
 #include "Constants.h"
 #include "subsystems/DriveSubsystem.h"
+#include "subsystems/ShooterSubsystem.h"
 
 class RobotContainer {
  public:
@@ -20,5 +21,6 @@ class RobotContainer {
   void ConfigureBindings();
 
   DriveSubsystem m_drive;
-  frc::XboxController m_driverController{OIConstants::kDriverControllerPort};
+  ShooterSubsystem m_shooter;
+  frc2::CommandXboxController m_driverController{OIConstants::kDriverControllerPort};
 };

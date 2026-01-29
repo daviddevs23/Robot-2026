@@ -9,10 +9,12 @@ constexpr int kLeftFrontId = 41;
 constexpr int kLeftRearId = 42;
 constexpr int kRightFrontId = 43;
 constexpr int kRightRearId = 44;
+}  // namespace DriveConstants
 
+namespace ShooterConstants {
 constexpr int kLaunchMotor = 62;
 constexpr int kFeedMotor = 61;
-}  // namespace DriveConstants
+}
 
 namespace OIConstants {
 constexpr int kDriverControllerPort = 0;
