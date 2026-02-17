@@ -11,11 +11,6 @@ constexpr int kRightFrontId = 41;
 constexpr int kRightRearId = 43;
 }  // namespace DriveConstants
 
-namespace ShooterConstants {
-constexpr int kLaunchMotor = 62;
-constexpr int kFeedMotor = 61;
-}
-
 namespace OIConstants {
 constexpr int kDriverControllerPort = 0;
 constexpr double kDriveDeadband = 0.05;

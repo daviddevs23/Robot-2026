@@ -15,7 +15,9 @@ DriveSubsystem::DriveSubsystem()
                    rev::spark::SparkMax::MotorType::kBrushless),
       m_rightRear(DriveConstants::kRightRearId,
                   rev::spark::SparkMax::MotorType::kBrushless),
-      m_drive(m_leftFront, m_leftRear, m_rightFront, m_rightRear) {
+      m_leftGroup(m_leftFront, m_leftRear),
+      m_rightGroup(m_rightFront, m_rightRear),
+      m_drive(m_leftGroup, m_rightGroup) {
 
   m_leftConfig
     .SetIdleMode(rev::spark::SparkMaxConfig::IdleMode::kBrake);
@@ -28,8 +30,13 @@ DriveSubsystem::DriveSubsystem()
   m_leftRear.Configure(m_leftConfig, rev::spark::SparkMax::ResetMode::kResetSafeParameters, rev::spark::SparkMax::PersistMode::kPersistParameters);
   m_rightFront.Configure(m_rightConfig, rev::spark::SparkMax::ResetMode::kResetSafeParameters, rev::spark::SparkMax::PersistMode::kPersistParameters);
   m_rightRear.Configure(m_rightConfig, rev::spark::SparkMax::ResetMode::kResetSafeParameters, rev::spark::SparkMax::PersistMode::kPersistParameters);
+
+  // m_rightGroup.SetInverted(true);
 }
 
-void DriveSubsystem::Drive(double xSpeed, double ySpeed, double zRotation) {
-  m_drive.DriveCartesian(xSpeed, ySpeed, zRotation);
+void DriveSubsystem::MecanumDrive(double leftSpeed, double rightSpeed) {
+    m_drive.~MecanumDrive(leftSpeed, rightSpeed)
+}
+void DriveSubsystem::TankDrive(double leftSpeed, double rightSpeed) {
+  m_drive.ArcadeDrive(leftSpeed, rightSpeed);
 }

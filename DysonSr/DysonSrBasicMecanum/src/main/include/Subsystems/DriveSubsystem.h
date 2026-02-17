@@ -6,6 +6,7 @@
 
 #include <frc/drive/MecanumDrive.h>
 #include <frc/motorcontrol/MotorControllerGroup.h>
+#include <frc2/command/MecanumControllerCommand.h>
 #include <frc2/command/SubsystemBase.h>
 #include <rev/SparkMax.h>
 #include <rev/config/SparkMaxConfig.h>
@@ -14,7 +15,8 @@ class DriveSubsystem : public frc2::SubsystemBase {
  public:
   DriveSubsystem();
 
-  void Drive(double xSpeed, double ySpeed, double zRotation);
+  void TankDrive(double leftSpeed, double rightSpeed);
+  void MecanumDrive(double leftSpeed, double rightSpeed);
 
  private:
   rev::spark::SparkMax m_leftFront;
@@ -25,5 +27,7 @@ class DriveSubsystem : public frc2::SubsystemBase {
   rev::spark::SparkMaxConfig m_leftConfig;
   rev::spark::SparkMaxConfig m_rightConfig;
 
+  frc::MotorControllerGroup m_leftGroup;
+  frc::MotorControllerGroup m_rightGroup;
   frc::MecanumDrive m_drive;
 };

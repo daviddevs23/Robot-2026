@@ -13,12 +13,10 @@ ShooterSubsystem::ShooterSubsystem()
                  rev::spark::SparkMax::MotorType::kBrushed) {
 
   m_shooterConfig
-    .SetIdleMode(rev::spark::SparkMaxConfig::IdleMode::kBrake);
+    .SetIdleMode(rev::spark::SparkMaxConfig::IdleMode::kCoast);
 
   m_LaunchMotor.Configure(m_shooterConfig, rev::spark::SparkMax::ResetMode::kResetSafeParameters, rev::spark::SparkMax::PersistMode::kPersistParameters);
   m_FeedMotor.Configure(m_shooterConfig, rev::spark::SparkMax::ResetMode::kResetSafeParameters, rev::spark::SparkMax::PersistMode::kPersistParameters);
-
-  // m_rightGroup.SetInverted(true);
 }
 
 void ShooterSubsystem::Shoot(double speed) {
