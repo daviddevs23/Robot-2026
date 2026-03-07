@@ -72,11 +72,10 @@ void RobotContainer::ConfigureBindings() {
     )
   );
 
-  m_intakeButton.OnTrue(
-    frc2::cmd::Run (
-      [this] {
-        m_ballIntake.ToggleIntake();
-      },
+  m_driverController.A().ToggleOnTrue(
+    frc2::cmd::StartEnd(
+      [&] {m_ballIntake.EnableIntake(); },
+      [&] {m_ballIntake.DisableIntake(); },
       {&m_ballIntake}
     )
   );

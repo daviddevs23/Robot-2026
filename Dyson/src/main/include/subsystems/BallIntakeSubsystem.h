@@ -12,7 +12,8 @@ class BallIntakeSubsystem : public frc2::SubsystemBase {
  public:
   BallIntakeSubsystem();
 
-  void ToggleIntake();
+  void EnableIntake();
+  void DisableIntake();
 
  private:
   rev::spark::SparkMax m_LeftIntakeMotor;
@@ -20,6 +21,4 @@ class BallIntakeSubsystem : public frc2::SubsystemBase {
 
   rev::spark::SparkMaxConfig m_LeftIntakeConfig;
   rev::spark::SparkMaxConfig m_RightIntakeConfig;
-
-  bool feeding = false;
 };

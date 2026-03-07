@@ -22,14 +22,13 @@ BallIntakeSubsystem::BallIntakeSubsystem()
   m_RightIntakeMotor.Configure(m_RightIntakeConfig, rev::spark::SparkMax::ResetMode::kResetSafeParameters, rev::spark::SparkMax::PersistMode::kPersistParameters);
 }
 
-void BallIntakeSubsystem::ToggleIntake() {
-  feeding = !feeding;
-  // if (feeding) {
-  //   m_LeftIntakeMotor.Set(0.1);
-  // } else {
-  //   m_LeftIntakeMotor.Set(0.0);
-  // }
+void BallIntakeSubsystem::EnableIntake() {
     double velocity = -1.0;
+    m_LeftIntakeMotor.Set(velocity);
+    m_RightIntakeMotor.Set(velocity);
+}
+void BallIntakeSubsystem::DisableIntake() {
+    double velocity = 0.0;
     m_LeftIntakeMotor.Set(velocity);
     m_RightIntakeMotor.Set(velocity);
 }
