@@ -16,6 +16,11 @@ constexpr int kLaunchMotor = 62;
 constexpr int kFeedMotor = 61;
 }
 
+namespace BallIntakeConstants {
+constexpr int kLeftIntakeMotor = 45;
+constexpr int kRightIntakeMotor = 46;
+}
+
 namespace OIConstants {
 constexpr int kDriverControllerPort = 0;
 constexpr double kDriveDeadband = 0.05;

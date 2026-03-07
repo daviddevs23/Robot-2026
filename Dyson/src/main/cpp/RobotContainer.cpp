@@ -15,8 +15,8 @@ RobotContainer::RobotContainer() {
   m_drive.SetDefaultCommand(frc2::cmd::Run(
       [this] {
         const double xSpeed = -frc::ApplyDeadband(m_driverController.GetLeftY(), OIConstants::kDriveDeadband);
-        const double ySpeed = frc::ApplyDeadband(m_driverController.GetLeftX(), OIConstants::kDriveDeadband); 
-        const double zRotation = frc::ApplyDeadband(m_driverController.GetRightX(), OIConstants::kDriveDeadband);
+        const double ySpeed = frc::ApplyDeadband(m_driverController.GetRightX(), OIConstants::kDriveDeadband); 
+        const double zRotation = frc::ApplyDeadband(m_driverController.GetLeftX(), OIConstants::kDriveDeadband);
 
         double scale = 0.25;
 
@@ -69,6 +69,15 @@ void RobotContainer::ConfigureBindings() {
         m_shooter.Shoot(0);
       },
       {&m_shooter}
+    )
+  );
+
+  m_intakeButton.OnTrue(
+    frc2::cmd::Run (
+      [this] {
+        m_ballIntake.ToggleIntake();
+      },
+      {&m_ballIntake}
     )
   );
 }

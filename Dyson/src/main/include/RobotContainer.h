@@ -10,6 +10,7 @@
 #include "Constants.h"
 #include "subsystems/DriveSubsystem.h"
 #include "subsystems/ShooterSubsystem.h"
+#include "subsystems/BallIntakeSubsystem.h"
 
 class RobotContainer {
  public:
@@ -22,5 +23,7 @@ class RobotContainer {
 
   DriveSubsystem m_drive;
   ShooterSubsystem m_shooter;
+  BallIntakeSubsystem m_ballIntake;
   frc2::CommandXboxController m_driverController{OIConstants::kDriverControllerPort};
+  frc2::Trigger m_intakeButton = m_driverController.A();
 };
