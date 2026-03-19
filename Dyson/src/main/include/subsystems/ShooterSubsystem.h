@@ -12,13 +12,13 @@ class ShooterSubsystem : public frc2::SubsystemBase {
  public:
   ShooterSubsystem();
 
-  void Shoot(double speed);
-  void Feed(double speed);
-  void Pickup(double speed);
+  void EnableShooter();
+  void DisableShooter();
 
  private:
-  rev::spark::SparkMax m_LaunchMotor;
-  rev::spark::SparkMax m_FeedMotor;
+  rev::spark::SparkMax m_LeftShooterMotor;
+  rev::spark::SparkMax m_RightShooterMotor;
 
-  rev::spark::SparkMaxConfig m_shooterConfig;
+  rev::spark::SparkMaxConfig m_LeftShooterConfig;
+  rev::spark::SparkMaxConfig m_RightShooterConfig;
 };

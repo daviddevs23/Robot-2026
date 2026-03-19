@@ -3,31 +3,32 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "subsystems/ShooterSubsystem.h"
-
 #include "Constants.h"
 
 ShooterSubsystem::ShooterSubsystem()
-    : m_LaunchMotor(ShooterConstants::kLaunchMotor,
-                  rev::spark::SparkMax::MotorType::kBrushed),
-      m_FeedMotor(ShooterConstants::kFeedMotor,
-                 rev::spark::SparkMax::MotorType::kBrushed) {
+    : m_LeftShooterMotor(ShooterConstants::kLeftShooterId,
+                  rev::spark::SparkMax::MotorType::kBrushless),
+      m_RightShooterMotor(ShooterConstants::kRightShooterId,
+                 rev::spark::SparkMax::MotorType::kBrushless) {
 
-  m_shooterConfig
+  m_LeftShooterConfig
     .SetIdleMode(rev::spark::SparkMaxConfig::IdleMode::kCoast);
 
-  m_LaunchMotor.Configure(m_shooterConfig, rev::spark::SparkMax::ResetMode::kResetSafeParameters, rev::spark::SparkMax::PersistMode::kPersistParameters);
-  m_FeedMotor.Configure(m_shooterConfig, rev::spark::SparkMax::ResetMode::kResetSafeParameters, rev::spark::SparkMax::PersistMode::kPersistParameters);
+  m_RightShooterConfig
+    .SetIdleMode(rev::spark::SparkMaxConfig::IdleMode::kCoast)
+    .Inverted(true);
+
+  m_LeftShooterMotor.Configure(m_LeftShooterConfig, rev::spark::SparkMax::ResetMode::kResetSafeParameters, rev::spark::SparkMax::PersistMode::kPersistParameters);
+  m_RightShooterMotor.Configure(m_RightShooterConfig, rev::spark::SparkMax::ResetMode::kResetSafeParameters, rev::spark::SparkMax::PersistMode::kPersistParameters);
 }
 
-void ShooterSubsystem::Shoot(double speed) {
-  m_LaunchMotor.Set(-speed);
+void ShooterSubsystem::EnableShooter() {
+    double velocity = 0.55;
+    m_LeftShooterMotor.Set(velocity);
+    m_RightShooterMotor.Set(velocity);
 }
-
-void ShooterSubsystem::Feed(double speed) {
-  m_FeedMotor.Set(speed);
-}
-
-void ShooterSubsystem::Pickup(double speed) {
-  m_LaunchMotor.Set(-speed);
-  m_FeedMotor.Set(-speed);
+void ShooterSubsystem::DisableShooter() {
+    double velocity = 0.0;
+    m_LeftShooterMotor.Set(velocity);
+    m_RightShooterMotor.Set(velocity);
 }

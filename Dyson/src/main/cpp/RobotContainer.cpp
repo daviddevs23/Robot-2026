@@ -10,6 +10,7 @@
 #include "Constants.h"
 
 RobotContainer::RobotContainer() {
+
   ConfigureBindings();
 
   m_drive.SetDefaultCommand(frc2::cmd::Run(
@@ -18,7 +19,7 @@ RobotContainer::RobotContainer() {
         const double ySpeed = frc::ApplyDeadband(m_driverController.GetRightX(), OIConstants::kDriveDeadband); 
         const double zRotation = frc::ApplyDeadband(m_driverController.GetLeftX(), OIConstants::kDriveDeadband);
 
-        double scale = 0.25;
+        double scale = 0.35;
 
         m_drive.Drive(xSpeed * scale, ySpeed * scale, zRotation * scale);
       },
@@ -26,57 +27,27 @@ RobotContainer::RobotContainer() {
 }
 
 void RobotContainer::ConfigureBindings() {
-  m_driverController.LeftTrigger()
-  .WhileTrue(
-    frc2::cmd::RunEnd(
-      [this] {
-        double speed = m_driverController.GetLeftTriggerAxis();
-        m_shooter.Pickup(speed * 0.85);
-      },
-      [this] {
-        m_shooter.Pickup(0);
-      },
-      {&m_shooter}
-    )
-  );
-
-
-   m_driverController.RightTrigger()
-  .WhileTrue(
-    frc2::cmd::RunEnd(
-      [this] {
-        double speed = 1.0;
-        m_shooter.Shoot(speed);
-      },
-      [this] {
-        m_shooter.Shoot(0);
-      },
-      {&m_shooter}
-    )
-  );
-
-  m_driverController.RightBumper()
-  .WhileTrue(
-    frc2::cmd::RunEnd(
-      [this] {
-        double speed = 0.8;
-        m_shooter.Feed(speed);
-        speed = 1.0;
-        m_shooter.Shoot(speed);
-      },
-      [this] {
-        m_shooter.Feed(0);
-        m_shooter.Shoot(0);
-      },
-      {&m_shooter}
-    )
-  );
-
   m_driverController.A().ToggleOnTrue(
     frc2::cmd::StartEnd(
       [&] {m_ballIntake.EnableIntake(); },
       [&] {m_ballIntake.DisableIntake(); },
       {&m_ballIntake}
+    )
+  );
+
+  m_driverController.X().ToggleOnTrue(
+    frc2::cmd::StartEnd(
+      [&] {m_shooterFeeder.EnableShooterFeeder(); },
+      [&] {m_shooterFeeder.DisableShooterFeeder(); },
+      {&m_shooterFeeder}
+    )
+  );
+
+  m_driverController.B().ToggleOnTrue(
+    frc2::cmd::StartEnd(
+      [&] {m_shooter.EnableShooter(); },
+      [&] {m_shooter.DisableShooter(); },
+      {&m_shooter}
     )
   );
 }

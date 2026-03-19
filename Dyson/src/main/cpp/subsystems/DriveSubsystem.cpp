@@ -7,10 +7,10 @@
 #include "Constants.h"
 
 DriveSubsystem::DriveSubsystem()
-    : m_leftFront(DriveConstants::kLeftFrontId,
-                  rev::spark::SparkMax::MotorType::kBrushless),
-      m_leftRear(DriveConstants::kLeftRearId,
+    : m_leftRear(DriveConstants::kLeftRearId,
                  rev::spark::SparkMax::MotorType::kBrushless),
+      m_leftFront(DriveConstants::kLeftFrontId,
+                  rev::spark::SparkMax::MotorType::kBrushless),
       m_rightFront(DriveConstants::kRightFrontId,
                    rev::spark::SparkMax::MotorType::kBrushless),
       m_rightRear(DriveConstants::kRightRearId,
