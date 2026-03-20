@@ -19,7 +19,7 @@ RobotContainer::RobotContainer() {
         const double ySpeed = frc::ApplyDeadband(m_driverController.GetRightX(), OIConstants::kDriveDeadband); 
         const double zRotation = frc::ApplyDeadband(m_driverController.GetLeftX(), OIConstants::kDriveDeadband);
 
-        double scale = 0.35;
+        double scale = 0.65;
 
         m_drive.Drive(xSpeed * scale, ySpeed * scale, zRotation * scale);
       },
