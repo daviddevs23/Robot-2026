@@ -8,6 +8,7 @@
 #include <frc2/command/Commands.h>
 
 #include "Constants.h"
+#include "subsystems/AutonSubsystem.h"
 
 RobotContainer::RobotContainer() {
 
@@ -53,5 +54,6 @@ void RobotContainer::ConfigureBindings() {
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
-  return frc2::cmd::Print("No autonomous command configured");
+    return frc2::CommandPtr(std::make_unique<DriveForwardCommand>(&m_drive, &m_shooter, &m_shooterFeeder));
 }
+
