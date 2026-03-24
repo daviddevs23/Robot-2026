@@ -28,11 +28,11 @@ RobotContainer::RobotContainer() {
 }
 
 void RobotContainer::ConfigureBindings() {
-  m_driverController.A().ToggleOnTrue(
+  m_driverController.RightBumper().WhileTrue(
     frc2::cmd::StartEnd(
-      [&] {m_ballIntake.EnableIntake(); },
-      [&] {m_ballIntake.DisableIntake(); },
-      {&m_ballIntake}
+      [&] { m_ballIntake.EnableIntake(); },
+      [&] { m_ballIntake.DisableIntake(); },
+      { &m_ballIntake }
     )
   );
 
