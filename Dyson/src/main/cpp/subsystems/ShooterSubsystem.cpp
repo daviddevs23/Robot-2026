@@ -33,5 +33,5 @@ void ShooterSubsystem::DisableShooter() {
     m_RightShooterMotor.Set(velocity);
 }
 bool ShooterSubsystem::SpunUp() {
-  return m_shooterEncoder.GetVelocity() >= 5000;
+  return m_shooterEncoder.GetVelocity() >= 2950;
 }
