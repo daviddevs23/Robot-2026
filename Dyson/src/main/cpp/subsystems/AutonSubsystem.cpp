@@ -18,12 +18,12 @@ void DriveForwardCommand::Initialize() {
 }
 
 void DriveForwardCommand::Execute() {
-  if (m_timer.HasElapsed(9_s))
+  if (m_timer.HasElapsed(15_s))
   {
     m_shooterFeeder->DisableShooterFeeder();
     m_shooter->DisableShooter();
   }
-  else if (m_timer.HasElapsed(3_s)) {
+  else if (m_timer.HasElapsed(5_s)) {
     m_shooterFeeder->EnableShooterFeeder();
   }
   else if (m_timer.HasElapsed(1_s)) {
@@ -45,5 +45,5 @@ void DriveForwardCommand::End(bool interrupted) {
 
 bool DriveForwardCommand::IsFinished() {
   // Drive for 2 seconds
-  return m_timer.HasElapsed(10_s);
+  return m_timer.HasElapsed(16_s);
 }
