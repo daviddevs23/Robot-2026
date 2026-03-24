@@ -14,10 +14,13 @@ class ShooterSubsystem : public frc2::SubsystemBase {
 
   void EnableShooter();
   void DisableShooter();
+  bool SpunUp();
 
  private:
   rev::spark::SparkMax m_LeftShooterMotor;
   rev::spark::SparkMax m_RightShooterMotor;
+
+  rev::spark::SparkRelativeEncoder m_shooterEncoder = m_LeftShooterMotor.GetEncoder();
 
   rev::spark::SparkMaxConfig m_LeftShooterConfig;
   rev::spark::SparkMaxConfig m_RightShooterConfig;

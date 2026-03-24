@@ -9,6 +9,7 @@
 #include <frc2/command/SubsystemBase.h>
 #include <rev/SparkMax.h>
 #include <rev/config/SparkMaxConfig.h>
+#include <studica/AHRS.h>
 
 class DriveSubsystem : public frc2::SubsystemBase {
  public:
@@ -26,4 +27,5 @@ class DriveSubsystem : public frc2::SubsystemBase {
   rev::spark::SparkMaxConfig m_rightConfig;
 
   frc::MecanumDrive m_drive;
+  studica::AHRS m_gyro{studica::AHRS::NavXComType::kMXP_SPI};
 };

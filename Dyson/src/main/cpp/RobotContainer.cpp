@@ -36,19 +36,21 @@ void RobotContainer::ConfigureBindings() {
     )
   );
 
-  m_driverController.X().ToggleOnTrue(
-    frc2::cmd::StartEnd(
-      [&] {m_shooterFeeder.EnableShooterFeeder(); },
-      [&] {m_shooterFeeder.DisableShooterFeeder(); },
-      {&m_shooterFeeder}
-    )
-  );
-
-  m_driverController.B().ToggleOnTrue(
-    frc2::cmd::StartEnd(
-      [&] {m_shooter.EnableShooter(); },
-      [&] {m_shooter.DisableShooter(); },
-      {&m_shooter}
+  m_driverController.Y().WhileTrue(
+    frc2::cmd::RunEnd(
+      [&] {
+        m_shooter.EnableShooter();
+        if (m_shooter.SpunUp()) {
+          m_shooterFeeder.EnableShooterFeeder();
+        } else {
+          m_shooterFeeder.DisableShooterFeeder();
+        }
+      },
+      [&] {
+        m_shooter.DisableShooter();
+        m_shooterFeeder.DisableShooterFeeder();
+      },
+      {&m_shooter, &m_shooterFeeder}
     )
   );
 }

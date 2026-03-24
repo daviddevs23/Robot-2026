@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "subsystems/DriveSubsystem.h"
+#include <iostream>
 
 #include "Constants.h"
 
@@ -32,4 +33,5 @@ DriveSubsystem::DriveSubsystem()
 
 void DriveSubsystem::Drive(double xSpeed, double ySpeed, double zRotation) {
   m_drive.DriveCartesian(xSpeed, ySpeed, zRotation);
+  // std::cout << m_gyro.GetAngle() << std::endl;
 }
