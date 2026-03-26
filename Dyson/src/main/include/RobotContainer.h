@@ -31,5 +31,4 @@ class RobotContainer {
   ShooterFeederSubsystem m_shooterFeeder;
   ShooterSubsystem m_shooter;
   frc2::CommandXboxController m_driverController{OIConstants::kDriverControllerPort};
-  studica::AHRS *m_navx;
 };
